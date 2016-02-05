@@ -28,14 +28,20 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Productos</a>
+      <a class="navbar-brand" href="<?=base_url()?>index.php">Destacados</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Guitarras <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Bajos</a></li>
+          
+     <?php foreach ($categorias as $items): ?>  
+         
+          <li <?php if(isset($categoria)):if($categoria==$items->idCategoria):?> class="active"<?php endif; endif; ?>>
+            <a href="<?=base_url()?>index.php/productos/ver_categoria/<?=$items->idCategoria ?>"><?=$items->Nombre ?> <span class="sr-only">(current)</span></a>
+        </li>
+    <?php endforeach; ?>
+        
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorías <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -79,7 +85,5 @@
   </div><!-- /.container-fluid -->
 </nav>
 </div>
-
-
 
 
