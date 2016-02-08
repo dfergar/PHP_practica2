@@ -23,7 +23,7 @@ class productos extends CI_Controller {
    function ver_categoria($categoria)
    {
         $categorias=$this->Productos_model->get_categorias();
-        $cabecera=$this->load->view('cabecera', Array('categorias'=>$categorias), TRUE);
+        $cabecera=$this->load->view('cabecera', Array('categorias'=>$categorias, 'categoria'=>$categoria),  TRUE);
         $pie=$this->load->view('pie', Array(), TRUE);
         $cuerpo=$this->Productos_model->get_prod_categoria($categoria);
         $contenido=$this->load->view('productos_view',Array('productos'=>$cuerpo),true);
