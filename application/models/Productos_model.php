@@ -1,6 +1,6 @@
 <?php
 
-class Productos_model extends CI_Model {
+class Productos_model extends CI_Model{
 
    function __construct()
    {
@@ -31,6 +31,32 @@ class Productos_model extends CI_Model {
         $categoria = $this->db->query("SELECT * FROM Categoria");
         return $categoria->result();
     }
+    
+    	
+    //obtenemos el total de filas para hacer la paginación
+	function filas()
+	{
+		$consulta = $this->db->query("SELECT * FROM Producto WHERE Destacado=1");
+		return  $consulta->num_rows() ;
+	}
+        
+    //obtenemos todas las provincias a paginar con la función
+    //total_posts_paginados pasando la cantidad por página y el segmento
+    //como parámetros de la misma
+	function total_paginados($por_pagina,$segmento) 
+        {
+            $consulta = $this->db->query("SELECT * FROM Producto WHERE Destacado=1 LIMIT $segmento, $por_pagina");
+            $data=array();
+            foreach($consulta->result() as $fila)
+            {
+                $data[] = $fila;
+            }
+            return $data;
+	}
+     
+     
+	
 }
+
 ?>
 
