@@ -1,5 +1,5 @@
 
-  
+
 <?php foreach ($productos as $items): ?>
 
     
@@ -15,10 +15,13 @@
       </div>
     </div>
   </div>
-  <?php echo $this->pagination->create_links() ?>
+  
 
 <?php endforeach; ?>
- </div> 
+    
+    
+  
+
         
         
          

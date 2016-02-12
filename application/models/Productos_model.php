@@ -7,22 +7,22 @@ class Productos_model extends CI_Model{
        parent::__construct();
        $this->load->database();
    }
-   
-    function get_producto()
+           
+    function get_destacados($por_pagina,$segmento) 
     {
-        $producto = $this->db->query("SELECT * FROM Producto");
-        return $producto->result();
+        $consulta = $this->db->query("SELECT * FROM Producto WHERE Destacado=1 LIMIT $segmento, $por_pagina");
+        $data=array();
+        foreach($consulta->result() as $fila)
+        {
+            $data[] = $fila;
+        }
+        return $data;
     }
+      
     
-    function get_destacados()
+    function get_prod_categoria($prod_categoria, $por_pagina,$segmento)
     {
-        $producto = $this->db->query("SELECT * FROM Producto WHERE Destacado=1");
-        return $producto->result();
-    }
-    
-    function get_prod_categoria($prod_categoria)
-    {
-        $producto = $this->db->query("SELECT * FROM Producto WHERE Categoria='$prod_categoria'");
+        $producto = $this->db->query("SELECT * FROM Producto WHERE Categoria='$prod_categoria' LIMIT $segmento, $por_pagina");
         return $producto->result();
     }
     
@@ -34,25 +34,23 @@ class Productos_model extends CI_Model{
     
     	
     //obtenemos el total de filas para hacer la paginación
-	function filas()
-	{
-		$consulta = $this->db->query("SELECT * FROM Producto WHERE Destacado=1");
-		return  $consulta->num_rows() ;
-	}
+    function filas()
+    {
+            $consulta = $this->db->query("SELECT * FROM Producto WHERE Destacado=1");
+            return  $consulta->num_rows() ;
+    }
+
+    //obtenemos el total de filas para hacer la paginación
+    function filas_categoria($categoria)
+    {
+            $consulta = $this->db->query("SELECT * FROM Producto WHERE Categoria=$categoria");
+            return  $consulta->num_rows() ;
+    }
         
     //obtenemos todas las provincias a paginar con la función
     //total_posts_paginados pasando la cantidad por página y el segmento
     //como parámetros de la misma
-	function total_paginados($por_pagina,$segmento) 
-        {
-            $consulta = $this->db->query("SELECT * FROM Producto WHERE Destacado=1 LIMIT $segmento, $por_pagina");
-            $data=array();
-            foreach($consulta->result() as $fila)
-            {
-                $data[] = $fila;
-            }
-            return $data;
-	}
+	
      
      
 	

@@ -6,12 +6,12 @@
         <script type="text/javascript" src="<?=base_url()?>Assets/js/tienda.js" ></script>
     </head>
     <body>
-        <?=$cabecera?>
+        <div class="container"><?=$cabecera?></div>
         
-        <?=$contenido?>
-      
+        <div class="container"><?=$contenido?></div>
+        <div class="container"><?php echo $this->pagination->create_links() ?></div>
         
-        <?=$pie?>        
+        <div clas="container"><?=$pie?></div>        
         
        
     </body>

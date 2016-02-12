@@ -34,11 +34,12 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+          
           <li <?php if(!isset($categoria)):?>class="active"<?php endif;?>><a href="<?=base_url()?>index.php">Destacados</a></li>
      <?php foreach ($categorias as $items): ?>  
           
           <li <?php if(isset($categoria)):if($categoria==$items->idCategoria):?> class="active"<?php endif; endif; ?>>
-            <a href="<?=base_url()?>index.php/productos/ver_categoria/<?=$items->idCategoria ?>"><?=$items->Nombre ?> <span class="sr-only">(current)</span></a>
+            <a href="<?=site_url('productos/ver_categoria/'.$items->idCategoria) ?>"><?=$items->Nombre ?> <span class="sr-only">(current)</span></a>
         </li>
     <?php endforeach; ?>       
         
