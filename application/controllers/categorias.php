@@ -6,7 +6,7 @@ class categorias extends CI_Controller {
    {
        parent::__construct();
        $this->load->helper('url');
-       $this->load->model('Categorias_model');
+       
    }
    
     function index()

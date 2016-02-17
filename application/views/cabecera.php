@@ -18,7 +18,7 @@
 
 <div class="container-fluid">
    
-    <nav class="navbar navbar-default">
+  <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -35,15 +35,20 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
           
-          <li <?php if(!isset($categoria)):?>class="active"<?php endif;?>><a href="<?=base_url()?>index.php">Destacados</a></li>
-     <?php foreach ($categorias as $items): ?>  
+          <li <?php if(!isset($categoria)):?>class="active"<?php endif;?>>
+              <a href="<?=base_url()?>index.php">Destacados</a>
+          </li>
+                <?php foreach ($categorias as $items): ?>  
           
-          <li <?php if(isset($categoria)):if($categoria==$items->idCategoria):?> class="active"<?php endif; endif; ?>>
-            <a href="<?=site_url('productos/ver_categoria/'.$items->idCategoria) ?>"><?=$items->Nombre ?> <span class="sr-only">(current)</span></a>
-        </li>
-    <?php endforeach; ?>       
-        
+                    <li <?php if(isset($categoria)):if($categoria==$items->idCategoria):?> class="active"<?php endif; endif; ?>>
+                      <a href="<?=site_url('productos/ver_categoria/'.$items->idCategoria) ?>"><?=$items->Nombre ?> <span class="sr-only">(current)</span></a>
+                    </li>
+                    
+                <?php endforeach; ?>          
       </ul>
+        
+        
+        
         
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
@@ -52,7 +57,7 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#">
+            <li><a href="#">
             
                          <button type="button" class="btn btn-default" aria-label="Left Align">
   <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
