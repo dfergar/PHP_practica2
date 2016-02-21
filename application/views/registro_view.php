@@ -11,27 +11,30 @@
         <form action="" method="POST">
             <div class="form-group">
             <label>Usuario</label>
-            <input type="text" name="username" class ="form-control" value="<?=set_value('username')?>" size="50" />
+            <input type="text" name="Usuario" class ="form-control" value="<?=set_value('Usuario')?>" size="50" />
             <label>Contraseña</label>
-            <input type="text" name="password" class ="form-control" value="<?=set_value('password')?>" size="50" />
+            <input type="password" name="Password" class ="form-control" value="<?=set_value('Password')?>" size="50" />
             <label>Confirmar contraseña</label>
-            <input type="text" name="passconf" class ="form-control" value="<?=set_value('passconf')?>" size="50" />
+            <input type="password" name="passconf" class ="form-control" value="<?=set_value('passconf')?>" size="50" />
             <label>Nombre</label>
-            <input type="text" name="nombre" class ="form-control" value="<?=set_value('nombre')?>" size="50" />
-            <label>Apellidos</label>
-            <input type="text" name="apellidos" class ="form-control" value="<?=set_value('apellidos')?>" size="50" />
+            <input type="text" name="Nombre" class ="form-control" value="<?=set_value('Nombre')?>" size="50" />
+            <label>Apellidos</label>           
+            <input type="text" name="Apellidos" class ="form-control" value="<?=set_value('Apellidos')?>" size="50" />
+             <input type="hidden" name="Estado" value="1" /> 
             <label>DNI</label>
-            <input type="text" name="dni" class ="form-control" value="<?=set_value('dni')?>" size="50" />
-            <label>Dirección</label>
-            <input type="text" name="direccion" class ="form-control" value="<?=set_value('direccion')?>" size="50" />
-            <label>Código Postal</label>
-            <input type="text" name="cp" class ="form-control" value="<?=set_value('cp')?>" size="50" />
-            <label>Provincia</label>
-            <?=form_dropdown('provincias', $this->usuarios_model->get_provincias(), set_value('provincias'), 'class="form-control"');?>
-
+            <input type="text" name="Dni" class ="form-control" value="<?=set_value('Dni')?>" size="50" />
             <label>Email</label>
-            <input type="text" name="email" class ="form-control" value="<?=set_value('email')?>" size="50" />
+            <input type="text" name="Correo" class ="form-control" value="<?=set_value('Correo')?>" size="50" />
+            <label>Dirección</label>
+            <input type="text" name="Direccion" class ="form-control" value="<?=set_value('Direccion')?>" size="50" />
+            <label>Código Postal</label>
+            <input type="text" name="CodigoPostal" class ="form-control" value="<?=set_value('CodigoPostal')?>" size="50" />
+            <label>Provincia</label>
+            <?=form_dropdown('Provincia', $this->Usuarios_model->get_provincias(), set_value('Provincia'), 'class="form-control"');?>
+
+            
             <div><input type="submit" value="Enviar" /></div>
+            </div>
         </form>
     </body>
 </html>
