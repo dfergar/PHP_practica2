@@ -54,8 +54,8 @@
       <ul class="nav navbar-nav navbar-right">
             
           <?php if (null !==$this->session->userdata('Usuario')):?>
-          <li><a><?=$this->session->userdata('Usuario');?></a> </li>
-          <li><a href="<?=site_url('login/CerrarSesion');?>">Cerrar sesión</a></li>
+                    <li><a><?=$this->session->userdata('Usuario');?></a> </li>
+                    <li><a href="<?=site_url('login/CerrarSesion');?>">Cerrar sesión</a></li>
           <?php else:?>
                     <li><a href="<?=site_url('registro')?>">Registro</a></li>
                     <li><a href="<?=site_url('login')?>">Login</a></li>
@@ -67,7 +67,7 @@
                               <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                         </button>
                     </li>
-                    <li><a>0 Artículos</></li>
+                    <li><a><?=$this->session->userdata('cesta')." ";?>Artículos</a></li>
                         
                  
       </ul>
