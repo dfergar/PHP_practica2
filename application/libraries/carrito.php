@@ -7,12 +7,17 @@ class Carrito {
         return get_instance();
     }
     
-    public function agregar($id)
+    public function agregar($articulo)
     {
         $cesta=$this->CI()->session->userdata('cesta');
-        if(array_keys($cesta, $id)>0) $cesta[$id]++;
-        else $cesta[$id]=1;
+        $cesta[]=$articulo;
         $this->CI()->session->set_userdata('cesta', $cesta);
+    }
+    
+    public function narticulos()
+    {
+        $cesta=$this->CI()->session->userdata('cesta');
+        return  count($cesta);
     }
 }
 

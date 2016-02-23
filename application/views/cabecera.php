@@ -67,7 +67,7 @@
                               <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                         </button>
                     </li>
-                    <li><a><?=$this->session->userdata('cesta')." ";?>Artículos</a></li>
+                    <li><a><?=$this->carrito->narticulos()." ";?>Artículos</a></li>
                         
                  
       </ul>

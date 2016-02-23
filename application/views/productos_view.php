@@ -11,7 +11,7 @@
       <div class="caption">
         <h3><?=$items->Nombre ?></h3>
         <p><?=$items->PrecioVenta ?></p>
-        <p><a href="#" class="btn btn-primary" role="button">Comprar</a> <a href="<?=site_url('carrito/agregar/'.$items->idProducto)?>" class="btn btn-default" role="button">Detalles</a></p>
+        <p><a href="#" class="btn btn-primary" role="button">Comprar</a> <a href="<?=site_url('carrito/agregar/'.$items)?>" class="btn btn-default" role="button">Detalles</a></p>
       </div>
     </div>
   </div>
