@@ -63,7 +63,7 @@
           <?php endif?>
                     
                     <li>
-                        <button type="button" class="btn btn-default" aria-label="Left Align" style="margin-top: 8px;">
+                        <button onClick="location.href='<?=site_url('compras')?>'" type="button" class="btn btn-default" aria-label="Left Align" style="margin-top: 8px;">
                               <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                         </button>
                     </li>

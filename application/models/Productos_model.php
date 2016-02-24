@@ -19,6 +19,13 @@ class Productos_model extends CI_Model{
         return $data;
     }
       
+    function get_prod_id($id)
+    {
+        $consulta = $this->db->query("SELECT * FROM Producto WHERE idProducto='$id'");
+        return $consulta->row();
+                
+        
+    }
     
     function get_prod_categoria($prod_categoria, $por_pagina,$segmento)
     {

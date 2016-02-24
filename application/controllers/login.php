@@ -33,7 +33,7 @@ class Login extends CI_Controller {
             $username = $this->input->post('Usuario');
             $data_user = array('Usuario'=> $username, 'logued_in' => TRUE);
              
-            // asignamos dos datos a la sesión --> (username y logued_in)                                     
+                                          
             $this->session->set_userdata($data_user); 
             
             redirect('productos');
