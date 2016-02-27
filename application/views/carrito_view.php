@@ -12,12 +12,13 @@
       <tr>
       <th>Producto</th><th>Precio</th><th>Unidades</th><th>Importe</th>
       </tr>
-      <?php foreach ($articulos as $items): ?>
+      <?php print_r($articulos)?>
+          <?php foreach ($articulos as $items): ?>
   
       <tr>
-          <td><?=$items->Nombre?></td>
-          <td><?=$items->PrecioVenta?></td>
-          <td></td>
+          <td><?=$items['Nombre']?></td>
+          <td><?=$items['PrecioVenta']?></td>
+          <td><?=$items['und']?></td>
           <td></td>
       </tr>
       <?php endforeach; ?>

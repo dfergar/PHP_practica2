@@ -59,9 +59,9 @@ class Registro extends CI_Controller {
             );
             $this->Usuarios_model->Insert_Usuario($data);
             $username = $this->input->post('Usuario');
-            $data_user = array('Usuario'=> $username, 'logued_in' => TRUE);
+            $data_user = array('Usuario'=> $username);
              
-            // asignamos dos datos a la sesión --> (username y logued_in)                                     
+                                              
             $this->session->set_userdata($data_user); 
             
             redirect('productos');

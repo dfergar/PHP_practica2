@@ -68,6 +68,7 @@
                         </button>
                     </li>
                     <li><a><?=$this->carrito->narticulos()." ";?>Artículos</a></li>
+                    <li><a href="<?=site_url('compras/vaciar');?>">Vaciar carrito</a></li>
                         
                  
       </ul>

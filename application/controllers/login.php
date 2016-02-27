@@ -57,7 +57,7 @@ class Login extends CI_Controller {
         
         function CerrarSesion()
         {
-            session_destroy();
+            $this->session->unset_userdata('Usuario');           
             redirect('productos');
         }
         

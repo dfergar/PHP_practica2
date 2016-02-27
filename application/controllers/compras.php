@@ -18,17 +18,15 @@ class Compras extends CI_Controller {
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
         
-        $cuerpo=$this->contenido();      
-                      
-        
-        $contenido=$this->load->view('carrito_view',Array('articulos'=>$cuerpo),true);
+        $contenido=$this->load->view('carrito_view',Array('articulos'=>$this->contenido()),true);
         $this->load->view('plantilla_view',Array('cabecera'=>$cabecera, 'contenido'=>$contenido,'pie'=>$pie));
    }
    
    function agregar($id)
    {
        
-       $this->carrito->agregar($id);
+       $articulo=$this->Productos_model->get_prod_id($id);
+       $this->carrito->agregar($articulo);
        redirect('compras');
        
    }
@@ -36,12 +34,22 @@ class Compras extends CI_Controller {
    function contenido()
    {
        
-       $ids=$this->carrito->contenido();
-       foreach($ids as $item)
-       {
-           $items[]=$this->Productos_model->get_prod_id($item);
-       }
-       return $items;
+        if(null===$this->carrito->contenido())
+        {
+            redirect('productos');
+        }
+        else 
+        {
+           return $this->carrito->contenido();
+            
+        }
+            
+   }
+   
+   function vaciar()
+   {
+       $this->carrito->vaciar();
+        redirect('compras');
    }
    
    
