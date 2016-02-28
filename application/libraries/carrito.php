@@ -19,10 +19,26 @@ class Carrito {
        {
            $item=['Nombre'=>$articulo->Nombre, 'PrecioVenta'=>$articulo->PrecioVenta, 'und'=>1];
        }    
+       $item['Importe']=$item['PrecioVenta']*$item['und'];
        $cesta=$this->CI()->session->userdata('cesta');
        $cesta[$articulo->idProducto]=$item;       
-       $this->CI()->session->set_userdata('cesta', $cesta);
+       $this->CI()->session->set_userdata('cesta', $cesta);      
+       
         
+    }
+    
+    public function eliminar($id)
+    {
+        $cesta=$this->CI()->session->userdata('cesta');
+        unset($cesta[$id]);
+        if(count($cesta>0))
+        {   
+            $this->CI()->session->set_userdata('cesta', $cesta);  
+        }
+        else
+        {
+            $this->CI()->session->unset_userdata('cesta');
+        }
     }
     
     public function contenido()
@@ -52,13 +68,33 @@ class Carrito {
     
     public function narticulos()
     {
+        $total_unidades=0;
         $cesta=$this->CI()->session->userdata('cesta');
-        return  count($cesta);
+        if(count($cesta)!=0)
+        {
+            foreach($cesta as $item)
+            {
+                $total_unidades+=$item['und'];
+            }
+            return  $total_unidades;
+        }
+        else {return 0;}
     }
     
     public function vaciar()
     {
         $this->CI()->session->unset_userdata('cesta');
+    }
+    
+    public function total()
+    {
+        $total_importe=0;        
+        $cesta=$this->CI()->session->userdata('cesta');
+        foreach($cesta as $item)
+            {
+                $total_importe+=$item['Importe'];
+            }
+            return  $total_importe;
     }
 }
 

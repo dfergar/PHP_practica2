@@ -10,18 +10,24 @@
    
   <table class="table">
       <tr>
-      <th>Producto</th><th>Precio</th><th>Unidades</th><th>Importe</th>
+          <th>Producto</th><th>Precio</th><th>Unidades</th><th>Importe</th><th></th>
       </tr>
-      <?php print_r($articulos)?>
+          
           <?php foreach ($articulos as $items): ?>
   
-      <tr>
+      <tr>          
           <td><?=$items['Nombre']?></td>
-          <td><?=$items['PrecioVenta']?></td>
+          <td><?=number_format($items['PrecioVenta'],2,',','.')?></td>
           <td><?=$items['und']?></td>
-          <td></td>
+          <td><?=number_format($items['Importe'],2,',','.')?></td>
+          <td><a href="<?=site_url('compras/eliminar/'.key($articulos))?>">Eliminar</a></td>
       </tr>
+      
       <?php endforeach; ?>
+      <tr style="font-weight: bold">
+          <td colspan="3" style="text-align: right; font-weight: bold">TOTAL</td>
+          <td><?=number_format($this->carrito->total(),2,',','.');?></td>
+      </tr>
   </table>
 </div>
          

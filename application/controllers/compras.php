@@ -27,7 +27,13 @@ class Compras extends CI_Controller {
        
        $articulo=$this->Productos_model->get_prod_id($id);
        $this->carrito->agregar($articulo);
-       redirect('compras');
+       redirect('compras');       
+   }
+   
+   function eliminar($id)
+   {
+       $this->carrito->eliminar($id);
+       redirect('compras');  
        
    }
    
@@ -49,7 +55,7 @@ class Compras extends CI_Controller {
    function vaciar()
    {
        $this->carrito->vaciar();
-        redirect('compras');
+       redirect('compras');
    }
    
    
