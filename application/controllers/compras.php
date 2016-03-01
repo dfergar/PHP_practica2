@@ -24,10 +24,17 @@ class Compras extends CI_Controller {
    
    function agregar($id)
    {
-       
+       $this->session->set_userdata('no_stock', FALSE);
        $articulo=$this->Productos_model->get_prod_id($id);
-       $this->carrito->agregar($articulo);
-       redirect('compras');       
+       if($this->Productos_model->check_stock($id))
+       {
+          $this->carrito->agregar($articulo);
+       }
+       else
+       {
+        $this->session->set_userdata('no_stock', TRUE);
+       }
+        redirect('compras');       
    }
    
    function eliminar($id)

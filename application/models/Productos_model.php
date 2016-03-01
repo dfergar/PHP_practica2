@@ -53,10 +53,23 @@ class Productos_model extends CI_Model{
             $consulta = $this->db->query("SELECT * FROM Producto WHERE Categoria=$categoria");
             return  $consulta->num_rows() ;
     }
-        
-    //obtenemos todas las provincias a paginar con la función
-    //total_posts_paginados pasando la cantidad por página y el segmento
-    //como parámetros de la misma
+     
+    /**
+     * Comprobar si hay disponibilidad de las unidades del producto solicitado
+     * @param type $id:     id del producto
+     * @param type $und:    unidades solicitadas
+     * @return boolean
+     */
+    function check_stock($id)
+    {
+        $consulta = $this->db->query("SELECT * FROM producto WHERE idProducto=$id");
+        if($consulta->row()->Stock==0)
+        {
+            return FALSE;
+        }
+        else return TRUE;
+    }
+            
 	
      
      
