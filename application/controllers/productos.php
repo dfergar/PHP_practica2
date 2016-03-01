@@ -73,6 +73,19 @@ class Productos extends CI_Controller {
         $this->load->view('plantilla_view',Array('cabecera'=>$cabecera, 'contenido'=>$contenido,'pie'=>$pie));
    }
    
+   function detalle($id)
+   {
+        $categorias=$this->Productos_model->get_categorias();
+        $cabecera=$this->load->view('cabecera', Array('categorias'=>$categorias),  TRUE);
+        $pie=$this->load->view('pie', Array(), TRUE);
+        
+        $cuerpo=$this->Productos_model->get_prod_id($id);
+        $contenido=$this->load->view('detalle_view',Array('detalles'=>$cuerpo),true);
+       
+        $this->load->view('plantilla_view',Array('cabecera'=>$cabecera, 'contenido'=>$contenido,'pie'=>$pie));
+   }
+   
+   
    
 }
 ?>

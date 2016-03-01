@@ -1,6 +1,8 @@
 
 
-<?php foreach ($productos as $items): ?>
+
+    
+ <?php foreach ($productos as $items): ?>
 
  
 
@@ -11,7 +13,10 @@
       <div class="caption">
         <h3><?=$items->Nombre ?></h3>
         <p><?=$items->PrecioVenta ?></p>
-        <p><a href="<?=site_url('compras/agregar/'.$items->idProducto)?>" class="btn btn-primary" role="button">Comprar</a> <a href="*" class="btn btn-default" role="button">Detalles</a></p>
+        <p>
+            <a href="<?=site_url('compras/agregar/'.$items->idProducto)?>" class="btn btn-primary" role="button">Comprar</a> 
+            <a href="<?=site_url('productos/detalle/'.$items->idProducto)?>" class="btn btn-default" role="button">Detalles</a>
+        </p>
       </div>
     </div>
   </div>
@@ -20,19 +25,5 @@
 <?php endforeach; ?>
     <div class="row">
         <div class="col-md-12" style="text-align: center"><?php echo $this->pagination->create_links() ?></div>
-    </div>
-    
-    
+    </div>   
   
-
-        
-        
-         
-  
-        
-       
-
-
-
-
-

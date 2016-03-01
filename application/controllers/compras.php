@@ -14,10 +14,7 @@ class Compras extends CI_Controller {
         $categorias=$this->Productos_model->get_categorias();
         $cabecera=$this->load->view('cabecera', Array('categorias'=>$categorias), TRUE);
         $pie=$this->load->view('pie', Array(), TRUE);         
-
-        $this->load->helper(array('form', 'url'));
-        $this->load->library('form_validation');
-        
+                
         $contenido=$this->load->view('carrito_view',Array('articulos'=>$this->contenido()),true);
         $this->load->view('plantilla_view',Array('cabecera'=>$cabecera, 'contenido'=>$contenido,'pie'=>$pie));
    }

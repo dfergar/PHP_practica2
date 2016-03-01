@@ -12,7 +12,7 @@
       <tr>
           <th>Producto</th><th>Precio</th><th>Unidades</th><th>Importe</th><th></th>
       </tr>
-          <?=print_r($articulos);?>
+          <?php //print_r($articulos);?>
           <?php foreach ($articulos as $items): ?>
   
       <tr>          
