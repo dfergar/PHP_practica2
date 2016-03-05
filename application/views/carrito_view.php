@@ -10,17 +10,19 @@
    
   <table class="table">
       <tr>
-          <th>Producto</th><th>Precio</th><th>Unidades</th><th>Importe</th><th></th>
+          <th>Producto</th><th></th><th>Precio</th><th>Unidades</th><th>Importe</th><th></th>
       </tr>
-          <?php //print_r($articulos);?>
-          <?php foreach ($articulos as $items): ?>
+         
+          <?php foreach ($articulos as $clave=>$items): ?>
+         
   
       <tr>          
           <td><?=$items['Nombre']?></td>
+          <td><a href="<?=site_url('productos/detalle/'.$clave)?>" class="btn btn-primary" role="button">Detalles</a></td>
           <td><?=number_format($items['PrecioVenta'],2,',','.')?></td>
           <td><?=$items['und']?></td>
           <td><?=number_format($items['Importe'],2,',','.')?></td>
-          <td><a href="<?=site_url('compras/eliminar/'.key($articulos))?>">Eliminar</a></td>
+          <td><a href="<?=site_url('compras/eliminar/'.$clave)?>">Eliminar</a></td>
       </tr>
       
       <?php endforeach; ?>
@@ -31,5 +33,6 @@
   </table>
  
 </div>
- <button onClick="history.back()">Volver</button>
+ <button class="btn btn-primary" onClick="history.back()">Volver</button>
+ <a class="btn btn-primary" href="<?=site_url('compras/comprar')?>">Realizar compra</a>
          

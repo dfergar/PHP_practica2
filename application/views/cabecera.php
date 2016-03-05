@@ -54,7 +54,7 @@
       <ul class="nav navbar-nav navbar-right">
             
           <?php if (null !==$this->session->userdata('Usuario')):?>
-                    <li><a><?=$this->session->userdata('Usuario');?></a> </li>
+                    <li><a href="<?=site_url('usuario/ver_usuario/'.$this->session->userdata('Usuario'))?>"><?=$this->session->userdata('Usuario')?></a> </li>
                     <li><a href="<?=site_url('login/CerrarSesion');?>">Cerrar sesión</a></li>
           <?php else:?>
                     <li><a href="<?=site_url('registro')?>">Registro</a></li>

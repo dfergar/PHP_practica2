@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Mi Formulario</title>
+        <title>REGISTRO</title>
     </head>
     <body>
         <div class="alert alert-danger">

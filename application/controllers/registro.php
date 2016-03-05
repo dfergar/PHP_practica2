@@ -61,7 +61,7 @@ class Registro extends CI_Controller {
             $username = $this->input->post('Usuario');
             $data_user = array('Usuario'=> $username);
              
-                                              
+                                      
             $this->session->set_userdata($data_user); 
             
             redirect('productos');

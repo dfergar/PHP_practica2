@@ -21,17 +21,31 @@ class Compras extends CI_Controller {
    
    function agregar($id)
    {
-       $this->session->set_userdata('no_stock', FALSE);
+       
        $articulo=$this->Productos_model->get_prod_id($id);
-       if($this->Productos_model->check_stock($id))
+       $encarrito=0;
+       if(isset($this->session->userdata('cesta')[$id]['und'])) $encarrito+=$this->session->userdata('cesta')[$id]['und'];
+       if($articulo->Stock-$encarrito>0)
        {
           $this->carrito->agregar($articulo);
+          redirect('compras');       
        }
        else
        {
-        $this->session->set_userdata('no_stock', TRUE);
+        
+        $this->load->helper(array('form', 'url'));
+       
+        $categorias=$this->Productos_model->get_categorias();
+        $cabecera=$this->load->view('cabecera', Array('categorias'=>$categorias), TRUE);
+        $pie=$this->load->view('pie', Array(), TRUE);     
+
+        
+        $mensaje="Lo sentimos pero no disponemos de más unidades de ese producto";
+        $this->session->unset_userdata('Usuario');
+        $contenido=$this->load->view('mensajes_view', Array('mensaje'=>$mensaje), TRUE);
+        $this->load->view('plantilla_view',Array('cabecera'=>$cabecera, 'contenido'=>$contenido,'pie'=>$pie));
        }
-        redirect('compras');       
+        
    }
    
    function eliminar($id)

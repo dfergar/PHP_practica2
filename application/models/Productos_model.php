@@ -63,11 +63,12 @@ class Productos_model extends CI_Model{
     function check_stock($id)
     {
         $consulta = $this->db->query("SELECT * FROM producto WHERE idProducto=$id");
-        if($consulta->row()->Stock==0)
+        return $consulta->row()->Stock;
+        /*if($consulta->row()->Stock==0)
         {
             return FALSE;
         }
-        else return TRUE;
+        else return TRUE;*/
     }
             
 	

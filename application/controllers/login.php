@@ -31,7 +31,7 @@ class Login extends CI_Controller {
         {
             //$this->load->view('login_ok_view');
             $username = $this->input->post('Usuario');
-            $data_user = array('Usuario'=> $username, 'logued_in' => TRUE);
+            $data_user = array('Usuario'=> $username);
              
                                           
             $this->session->set_userdata($data_user); 
