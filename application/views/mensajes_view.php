@@ -4,7 +4,7 @@
         <title>MENSAJE</title>
     </head>
     <body>
-         <div class="alert alert-success" style="padding: 100px; font-size: 30px; text-align: center;">
+         <div class="alert alert-success" style="padding: 60px; font-size: 30px; text-align: center;">
              <?=$mensaje?>
          </div>
         <a class="btn btn-default" href="<?=site_url('productos')?>">Volver a la tienda</a>

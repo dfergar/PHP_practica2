@@ -7,17 +7,27 @@ class Carrito {
         return get_instance();
     }
     
-    public function agregar($articulo)
+    public function agregar($articulo, $unds)
     {
        if($this->buscar_articulo($articulo->idProducto))
        {
            $cesta=$this->CI()->session->userdata('cesta');
-           $und=$cesta[$articulo->idProducto]['und']+1;
-           $item=['Nombre'=>$articulo->Nombre, 'PrecioVenta'=>$articulo->PrecioVenta, 'und'=>$und];
+           $und=$cesta[$articulo->idProducto]['und']+$unds;
+           $item=['Nombre'=>$articulo->Nombre,
+                  'PrecioVenta'=>$articulo->PrecioVenta,
+                  'und'=>$und,
+                  'Descuento'=>$articulo->Descuento,
+                  'Iva'=>$articulo->Iva
+                   ];
        }
        else
        {
-           $item=['Nombre'=>$articulo->Nombre, 'PrecioVenta'=>$articulo->PrecioVenta, 'und'=>1];
+           $item=['Nombre'=>$articulo->Nombre, 
+                  'PrecioVenta'=>$articulo->PrecioVenta, 
+                  'und'=>$unds,
+                  'Descuento'=>$articulo->Descuento, 
+                  'Iva'=>$articulo->Iva
+                   ];
        }    
        $item['Importe']=$item['PrecioVenta']*$item['und'];
        $cesta=$this->CI()->session->userdata('cesta');
@@ -30,15 +40,26 @@ class Carrito {
     public function eliminar($id)
     {
         $cesta=$this->CI()->session->userdata('cesta');
-        unset($cesta[$id]);
-        if(count($cesta>0))
-        {   
-            $this->CI()->session->set_userdata('cesta', $cesta);  
-        }
-        else
+        if($cesta[$id]['und']>1)
         {
-            $this->CI()->session->unset_userdata('cesta');
+            $cesta[$id]['und']--;
+            $cesta[$id]['Importe']=$cesta[$id]['PrecioVenta']*$cesta[$id]['und'];
+            $this->CI()->session->set_userdata('cesta', $cesta);    
         }
+        else 
+        {
+            unset($cesta[$id]);
+            if(count($cesta>0))
+            {   
+                $this->CI()->session->set_userdata('cesta', $cesta);  
+            }
+            else
+            {
+                $this->CI()->session->unset_userdata('cesta');
+            }
+            
+        }
+        
     }
     
     public function contenido()
@@ -95,6 +116,23 @@ class Carrito {
                 $total_importe+=$item['Importe'];
             }
             return  $total_importe;
+    }
+    
+    public function base_iva()
+    {
+        $total_base=0; 
+        $total_iva=0;
+        $cesta=$this->CI()->session->userdata('cesta');
+        foreach($cesta as $item)
+            {
+                $total_base+=$item['Importe']-$item['Importe']*21/100;
+                $total_iva+=$item['Importe']*21/100;
+            }
+        $total=array(
+            'base'=>$total_base,
+            'iva'=>$total_iva,
+        );
+            return  $total;
     }
 }
 

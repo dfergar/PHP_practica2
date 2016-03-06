@@ -45,6 +45,7 @@ class Usuario extends CI_Controller {
                 $datos=$this->Usuarios_model->GetUsuario($usuario);
                 if(!$_POST)                
                 {
+                    
                     $_POST['Usuario']=$datos->Usuario;
                     $_POST['Password']=$datos->Password;
                     $_POST['Nombre']=$datos->Nombre;
@@ -59,7 +60,7 @@ class Usuario extends CI_Controller {
             
                               
 
-                $this->form_validation->set_rules('Usuario', 'Usuario','trim|required|min_length[5]|max_length[12]|callback_ExisteUsuario');
+                $this->form_validation->set_rules('Usuario', 'Usuario','trim|required|min_length[5]|max_length[12]');
                 $this->form_validation->set_rules('Password', 'Contraseña','trim|required|matches[passconf]');
                 $this->form_validation->set_rules('passconf', 'Confirmar Contraseña', 'trim|required');
                 $this->form_validation->set_rules('Nombre', 'Nombre','trim|required');
@@ -181,6 +182,19 @@ class Usuario extends CI_Controller {
             $this->session->unset_userdata('Usuario');           
             redirect('productos');
         }
+        
+        function consulta_pedidos($id)
+        {
+            $this->load->model('Usuarios_model');
+            $pedidos=$this->Usuarios_model->GetPedidos($id);
+            $categorias=$this->Productos_model->get_categorias();
+            $cabecera=$this->load->view('cabecera', Array('categorias'=>$categorias), TRUE);
+            $pie=$this->load->view('pie', Array(), TRUE); 
+            
+            $contenido=$this->load->view('lista_pedidos_view', Array('pedidos'=>$pedidos), TRUE);
+            $this->load->view('plantilla_view',Array('cabecera'=>$cabecera, 'contenido'=>$contenido,'pie'=>$pie));
+        }
+        
         
     
 }

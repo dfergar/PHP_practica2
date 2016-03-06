@@ -12,7 +12,7 @@
 
 <div class="container">
   <div class="page-header">
-    <h1>BACKLINE INSTRUMENTOS MUSICALES</h1>      
+      <a href="<?=site_url('productos')?>" style="text-decoration:none;"><h1>BACKLINE INSTRUMENTOS MUSICALES</h1></a>    
   </div>
 </div>
 

@@ -58,6 +58,13 @@ class Usuarios_model extends CI_Model{
     {
         $this->db->delete('Usuario', array('idUsuario' => $id));
     }
+    
+    function GetPedidos($id)
+    {
+        $consulta=$this->db->query("SELECT * FROM Pedido WHERE Usuario_idUsuario=$id");
+        return $consulta->result();
+        
+    }
             
 }
 ?>

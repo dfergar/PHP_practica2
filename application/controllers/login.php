@@ -31,8 +31,11 @@ class Login extends CI_Controller {
         {
             //$this->load->view('login_ok_view');
             $username = $this->input->post('Usuario');
-            $data_user = array('Usuario'=> $username);
-             
+            $usuario = $this->Usuarios_model->GetUsuario($username);
+            $data_user=array(
+                'Usuario'=>$usuario->Usuario,
+                'idUsuario'=>$usuario->idUsuario
+            ) ;
                                           
             $this->session->set_userdata($data_user); 
             

@@ -4,8 +4,7 @@
         <title>REGISTRO</title>
     </head>
     <body>
-        <?=print_r($data)?>
-        <?=print_r($this->session->userdata())?>
+        <h2>Datos del usuario</h2>
         <table class="table">
             <tr>
                 <td>Usuario</td><td><?=$data->Usuario?></td>
@@ -40,8 +39,9 @@
             </tr>
         </table>
         <a class="btn btn-default" href="<?=site_url('usuario/set_usuario/'.$data->Usuario)?>">Modificar</a>
-        <a class="btn btn-default" href="<?=site_url('usuario/recuperar/'.$data->idUsuario)?>">Recuperar Password</a>
+        <a class="btn btn-default" href="<?=site_url('usuario/recuperar/'.$data->Correo)?>">Recuperar Password</a>
         <a class="btn btn-default" href="<?=site_url('usuario/baja/'.$data->idUsuario)?>">Eliminar Usuario</a>
+        <a class="btn btn-default" href="<?=site_url('usuario/consulta_pedidos/'.$data->idUsuario)?>">Consultar pedidos</a>
     </body>
 </html>
 

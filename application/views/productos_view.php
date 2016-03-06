@@ -12,9 +12,13 @@
       <img src="<?=base_url()?><?=$items->Imagen ?>">
       <div class="caption">
         <h3><?=$items->Nombre ?></h3>
-        <p><?=$items->PrecioVenta ?></p>
+        <p style="font-size: 25px;">
+            <?=$items->PrecioVenta." €" ?>
+            <input style="font-size: 15px; text-align: center; margin: 10px;" type="number" min="0" max="99" value="0">Und
+        </p>
         <p>
-            <a href="<?=site_url('compras/agregar/'.$items->idProducto)?>" class="btn btn-primary" role="button">Comprar</a> 
+            
+            <a id="und" href="<?=site_url('compras/agregar/'.$items->idProducto)?>" class="btn btn-primary" role="button">Comprar</a> 
             <a href="<?=site_url('productos/detalle/'.$items->idProducto)?>" class="btn btn-default" role="button">Detalles</a>
         </p>
       </div>
