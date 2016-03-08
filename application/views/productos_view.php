@@ -7,11 +7,11 @@
  
 
 <div class="row">
-  <div class="col-sm-4 col-md-3">
+  <div class="col-sm-4 col-md-2">
     <div class="thumbnail">
-      <img src="<?=base_url()?><?=$items->Imagen ?>">
+      <img src="<?=base_url()?><?=$items->Imagen ?>" style="height: 300px;">
       <div class="caption">
-        <h3><?=$items->Nombre ?></h3>
+        <h5><?=$items->Nombre ?></h5>
         <p style="font-size: 25px;">
             <?=$items->PrecioVenta." €" ?>
             <input style="font-size: 15px; text-align: center; margin: 10px;" type="number" min="0" max="99" value="0">Und

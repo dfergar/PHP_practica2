@@ -1,6 +1,6 @@
 <?php
 
-class categorias extends CI_Controller {
+class Categorias extends CI_Controller {
 
    function __construct()
    {

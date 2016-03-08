@@ -153,8 +153,23 @@ class Usuario extends CI_Controller {
                        
         
         
-        public function recuperar()
+        public function recuperar($id)
         {
+            $this->load->model('Usuarios_model');
+            $this->load->helper(array('form', 'url'));
+           
+            $this->load->email->sendMailGmail($this->Usuarios_model->GetUsuario($id)->Correo);
+            
+            $categorias=$this->Productos_model->get_categorias();
+            $cabecera=$this->load->view('cabecera', Array('categorias'=>$categorias), TRUE);
+            $pie=$this->load->view('pie', Array(), TRUE);     
+
+            
+            
+            $mensaje="Se ha enviado un correo con un enlace para la recuperación de contraseña a <?=$correo?>";
+            
+            $contenido=$this->load->view('mensajes_view', Array('mensaje'=>$mensaje), TRUE);
+            $this->load->view('plantilla_view',Array('cabecera'=>$cabecera, 'contenido'=>$contenido,'pie'=>$pie));
             
         }
         

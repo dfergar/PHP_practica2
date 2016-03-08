@@ -25,7 +25,7 @@ class Compras extends CI_Controller {
        
        $articulo=$this->Productos_model->get_prod_id($id);
        $encarrito=0;
-       //$n_unidades=$_POST['dataString'];
+       $n_unidades=$_POST['unds'];
        
        if(isset($this->session->userdata('cesta')[$id]['und'])) $encarrito+=$this->session->userdata('cesta')[$id]['und'];
        if($articulo->Stock-$encarrito>0)
