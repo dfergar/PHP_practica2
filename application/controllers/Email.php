@@ -6,12 +6,12 @@ class Email extends CI_Controller
 		parent::__construct();
 	}
  
-	public function sendMailGmail($id)
+	public function sendMail($usuario)
 	{
 		$this->load->model('Usuarios_model');
                 $this->load->helper(array('form', 'url'));
 
-                $correo=$this->Usuarios_model->GetUsuario($id)['Correo'];
+                $correo=$this->Usuarios_model->GetUsuario($usuario)->Correo;
 
                 $categorias=$this->Productos_model->get_categorias();
                 $cabecera=$this->load->view('cabecera', Array('categorias'=>$categorias), TRUE);
@@ -21,28 +21,26 @@ class Email extends CI_Controller
 		$this->load->library("email");
  
 		//configuracion para gmail
-		$configGmail = array(
+		$config = array(
 			'protocol' => 'smtp',
-			'smtp_host' => 'ssl://smtp.gmail.com',
-			'smtp_port' => 465,
-			'smtp_user' => 'danielobajo@gmail.com',
-			'smtp_pass' => 'bajista1',
+			'smtp_host' => 'mail.iessansebastian.com',
+			
+			'smtp_user' => 'aula4@iessansebastian.com',
+			'smtp_pass' => 'daw2alumno',
 			'mailtype' => 'html',
-			'charset' => 'utf-8',
-			'newline' => "\r\n"
+			
 		);    
  
 		//cargamos la configuración para enviar con gmail
-		$this->email->initialize($configGmail);
+		$this->email->initialize($config);
  
-		$this->email->from('danielobajo@gmail.com');
-		$this->email->to("$correo");
+		$this->email->from('aula4@iessansebastian.com', 'Backline Instrumentos Musicales');
+		$this->email->to($correo);
 		$this->email->subject('Recuperación de contraseña');
 		$this->email->message('<a href="www.iessansebastian.com">Enlace</a>');
 		$this->email->send();
                 
-                $mensaje="Se ha enviado un correo con un enlace para la recuperación de contraseña a <?=$correo?>";
-                
+                $mensaje="Se ha enviado un eMail de recuperación";              
 		//con esto podemos ver el resultado
 		var_dump($this->email->print_debugger());
                 

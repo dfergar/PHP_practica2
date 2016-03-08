@@ -39,7 +39,7 @@
             </tr>
         </table>
         <a class="btn btn-default" href="<?=site_url('usuario/set_usuario/'.$data->Usuario)?>">Modificar</a>
-        <a class="btn btn-default" href="<?=site_url('email/sendMailGmail/'.$data->idUsuario)?>">Recuperar Password</a>
+        <a class="btn btn-default" href="<?=site_url('email/sendMail/'.$data->Usuario)?>">Recuperar Password</a>
         <a class="btn btn-default" href="<?=site_url('usuario/baja/'.$data->idUsuario)?>">Eliminar Usuario</a>
         <a class="btn btn-default" href="<?=site_url('usuario/consulta_pedidos/'.$data->idUsuario)?>">Consultar pedidos</a>
     </body>
