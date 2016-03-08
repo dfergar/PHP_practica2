@@ -34,7 +34,7 @@ class Login extends CI_Controller {
             $usuario = $this->Usuarios_model->GetUsuario($username);
             $data_user=array(
                 'Usuario'=>$usuario->Usuario,
-                'idUsuario'=>$usuario->idUsuario
+                'idUsuario'=>$usuario->idUsuario,                
             ) ;
                                           
             $this->session->set_userdata($data_user); 
@@ -60,7 +60,7 @@ class Login extends CI_Controller {
         
         function CerrarSesion()
         {
-            $this->session->unset_userdata('Usuario');           
+            $this->session->unset_userdata('Usuario', 'idUsuario');           
             redirect('productos');
         }
         

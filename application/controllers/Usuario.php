@@ -17,6 +17,7 @@ class Usuario extends CI_Controller {
     
         public function ver_usuario($usuario)
         {
+            if ($this->session->userdata('Usuario')){
             $categorias=$this->Productos_model->get_categorias();
             $cabecera=$this->load->view('cabecera', Array('categorias'=>$categorias), TRUE);
             $pie=$this->load->view('pie', Array(), TRUE);         
@@ -29,10 +30,14 @@ class Usuario extends CI_Controller {
 
             $contenido = $this->load->view('usuario_view',Array('data'=>$cuerpo), TRUE);
             $this->load->view('plantilla_view',Array('cabecera'=>$cabecera, 'contenido'=>$contenido,'pie'=>$pie));
+            }
+            else redirect('productos');
+            
         }
         
         public function set_usuario($usuario)
         {
+                if ($this->session->userdata('Usuario')){
                 $this->load->model('Usuarios_model');
                 $this->load->helper(array('form', 'url'));
                 $this->load->library('form_validation');
@@ -116,6 +121,9 @@ class Usuario extends CI_Controller {
                     redirect('productos');
 
                 }
+                
+                }
+                else redirect('productos');
        
                        
         }
@@ -175,6 +183,7 @@ class Usuario extends CI_Controller {
         
         public function baja($id)
         {
+            if ($this->session->userdata('Usuario')){
             $this->load->model('Usuarios_model');
             $this->load->helper(array('form', 'url'));
             $this->load->library('form_validation');
@@ -189,25 +198,29 @@ class Usuario extends CI_Controller {
             $this->session->unset_userdata('Usuario');
             $contenido=$this->load->view('mensajes_view', Array('mensaje'=>$mensaje), TRUE);
             $this->load->view('plantilla_view',Array('cabecera'=>$cabecera, 'contenido'=>$contenido,'pie'=>$pie));
-            
+            }
+            else redirect('productos');
         }
         
         function CerrarSesion()
         {
-            $this->session->unset_userdata('Usuario');           
+            $this->session->unset_userdata('Usuario','idUsuario');         
             redirect('productos');
         }
         
         function consulta_pedidos($id)
         {
-            $this->load->model('Usuarios_model');
-            $pedidos=$this->Usuarios_model->GetPedidos($id);
-            $categorias=$this->Productos_model->get_categorias();
-            $cabecera=$this->load->view('cabecera', Array('categorias'=>$categorias), TRUE);
-            $pie=$this->load->view('pie', Array(), TRUE); 
-            
-            $contenido=$this->load->view('lista_pedidos_view', Array('pedidos'=>$pedidos), TRUE);
-            $this->load->view('plantilla_view',Array('cabecera'=>$cabecera, 'contenido'=>$contenido,'pie'=>$pie));
+            if ($this->session->userdata('Usuario')){
+                $this->load->model('Usuarios_model');
+                $pedidos=$this->Usuarios_model->GetPedidos($id);
+                $categorias=$this->Productos_model->get_categorias();
+                $cabecera=$this->load->view('cabecera', Array('categorias'=>$categorias), TRUE);
+                $pie=$this->load->view('pie', Array(), TRUE); 
+
+                $contenido=$this->load->view('lista_pedidos_view', Array('pedidos'=>$pedidos), TRUE);
+                $this->load->view('plantilla_view',Array('cabecera'=>$cabecera, 'contenido'=>$contenido,'pie'=>$pie));
+            }
+            else redirect('productos');
         }
         
         

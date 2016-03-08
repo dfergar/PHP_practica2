@@ -145,7 +145,7 @@ class Compras extends CI_Controller {
             
         }   
         
-        
+        $this->carrito->vaciar();
         $mensaje="Pedido realizado correctamente";
         $contenido=$this->load->view('mensajes_view', Array('mensaje'=>$mensaje), TRUE);
         $this->load->view('plantilla_view',Array('cabecera'=>$cabecera, 'contenido'=>$contenido,'pie'=>$pie));       
