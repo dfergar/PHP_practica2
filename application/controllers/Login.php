@@ -51,7 +51,7 @@ class Login extends CI_Controller {
         {
             
             $user=$_POST['Usuario'];
-            $pass=$_POST['Password'];
+            $pass=sha1($_POST['Password']);
                 
             if($this->Usuarios_model->ValidarUsuario($user,$pass)) return TRUE;
             else return FALSE;
