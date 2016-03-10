@@ -47,7 +47,7 @@ class Registro extends CI_Controller {
         {
             $data=array(
                 'Usuario' => $_POST['Usuario'],
-                'Password' => sha1($_POST['Password']),
+                'Password' => $_POST['Password'],
                 'Nombre' => $_POST['Nombre'],
                 'Apellidos' =>$_POST['Apellidos'],
                 'Estado' => $_POST['Estado'],
