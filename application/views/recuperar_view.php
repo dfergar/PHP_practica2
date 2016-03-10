@@ -3,6 +3,7 @@
         <title>Mi Formulario</title>
     </head>
     <body>
+        <h2>Recuperación de constraseña</h2>
         <div class="alert alert-danger">
             <?php echo validation_errors(); ?>
         </div>
@@ -12,13 +13,9 @@
             <div class="form-group">
                 <label>Usuario</label>
                 <input type="text" name="Usuario" class ="form-control" value="<?=set_value('Usuario')?>" size="50" />
-                <label>Contraseña</label>
-                <input type="password" name="Password" class ="form-control" value="<?=set_value('Password')?>" size="50" />
                 <br>
-                <input type="submit" value="Enviar" />
+                <input type="submit" value="Enviar" class="btn btn-default" />
             </div>
-        </form> 
-        <p>¿Has olvidado la contraseña?</p>
-        <a href="<?=site_url('Recuperarpass')?>">Recuperar contraseña</a>
+        </form>
     </body>
 </html>
