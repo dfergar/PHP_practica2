@@ -6,8 +6,8 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "../../application/controllers/compras.php",
-            data: dataString,
+            url: "../../application/controllers/Compras.php",
+            data: {unidades: dataString},
 
         });
     });

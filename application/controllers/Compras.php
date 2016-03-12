@@ -25,7 +25,7 @@ class Compras extends CI_Controller {
        
        $articulo=$this->Productos_model->get_prod_id($id);
        $encarrito=0;
-       $n_unidades=$_POST['unds'];
+       //$n_unidades=$_POST['unds'];
        
        if(isset($this->session->userdata('cesta')[$id]['und'])) $encarrito+=$this->session->userdata('cesta')[$id]['und'];
        if($articulo->Stock-$encarrito>0)
@@ -83,7 +83,8 @@ class Compras extends CI_Controller {
    function comprar()
    {
         $this->load->model('Usuarios_model');
-        $this->load->helper(array('form', 'url'));     
+        $this->load->helper(array('form', 'url'));   
+       
 
         $categorias=$this->Productos_model->get_categorias();
         $cabecera=$this->load->view('cabecera', Array('categorias'=>$categorias), TRUE);
@@ -97,8 +98,9 @@ class Compras extends CI_Controller {
         }
         else 
         {
-             $contenido=$this->load->view('pedido_view',Array('articulos'=>$this->contenido()),true);
-             $this->load->view('plantilla_view',Array('cabecera'=>$cabecera, 'contenido'=>$contenido,'pie'=>$pie));
+            $datos_usuario=$this->Usuarios_model->GetUsuario($this->session->userdata('Usuario'));
+            $contenido=$this->load->view('pedido_view',Array('articulos'=>$this->contenido(), 'datos_usuario'=>$datos_usuario),true);            
+            $this->load->view('plantilla_view',Array('cabecera'=>$cabecera, 'contenido'=>$contenido,'pie'=>$pie));
         }
    }
    
@@ -144,7 +146,9 @@ class Compras extends CI_Controller {
             $this->Productos_model->AddLinea($lineas);
             
         }   
-        
+        $datos_usuario=$this->Usuarios_model->GetUsuario($this->session->userdata('Usuario'));
+        $email=$this->load->view('email_view',Array('articulos'=>$this->contenido(), 'datos_usuario'=>$datos_usuario),true);
+        $this->emailtienda->sendMail($email, $datos_usuario->Correo);
         $this->carrito->vaciar();
         $mensaje="Pedido realizado correctamente";
         $contenido=$this->load->view('mensajes_view', Array('mensaje'=>$mensaje), TRUE);

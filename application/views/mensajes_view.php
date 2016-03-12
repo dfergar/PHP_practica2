@@ -8,7 +8,9 @@
              <?=$mensaje?>
          </div>
         <a class="btn btn-default" href="<?=site_url('productos')?>">Volver a la tienda</a>
-         <button class="btn btn-primary" role="button" onClick="history.back()">Volver</button>
+        <?php if($mensaje!="Pedido cancelado correctamente"):?>
+        <button class="btn btn-primary" role="button" onClick="history.back()">Volver</button>
+        <?php endif?>
        
     </body>
 </html>

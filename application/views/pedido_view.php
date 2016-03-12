@@ -27,19 +27,27 @@
       
       <?php endforeach; ?>
       <tr style="font-weight: bold">
-          <td colspan="4" style="text-align: right; font-weight: bold">TOTAL</td>
+          <td>NOMBRE</td>
+          <td><?=$datos_usuario->Nombre.$datos_usuario->Apellidos?></td>
+          <td colspan="2" style="text-align: right; font-weight: bold">TOTAL</td>
           <td><?=number_format($this->carrito->total(),2,',','.');?></td> 
       </tr>
       <tr style="font-weight: bold">
-          <td colspan="4" style="text-align: right; font-weight: bold">Base Imp.</td>
+          <td>DIRECCION DE ENVIO</td>
+          <td><?=$datos_usuario->Direccion?></td>
+          <td colspan="2" style="text-align: right; font-weight: bold">Base Imp.</td>
           <td><?=number_format($this->carrito->base_iva()['base'],2,',','.');?></td> 
       </tr>
       <tr style="font-weight: bold">
-          <td colspan="4" style="text-align: right; font-weight: bold">Iva</td>
+          <td>CODIGO POSTAL</td>
+          <td><?=$datos_usuario->CodigoPostal?></td>
+          <td colspan="2" style="text-align: right; font-weight: bold">Iva</td>
           <td><?=number_format($this->carrito->base_iva()['iva'],2,',','.');?></td> 
       </tr>
-      <tr>
-          <td colspan="4" style="text-align: right; font-weight: bold">ENVIO</td>
+      <tr style="font-weight: bold">
+          <td>PROVINCIA</td>
+          <td><?=$this->Usuarios_model->get_provincia($datos_usuario->Provincia)?></td>
+          <td colspan="2" style="text-align: right; font-weight: bold">ENVIO</td>
           <td><?="GRATIS"?></td>      
       </tr>
   </table>

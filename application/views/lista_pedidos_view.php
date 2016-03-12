@@ -10,7 +10,7 @@
    
   <table class="table">
       <tr>
-          <th>Referencia</th><th>Fecha</th><th>Estado</th><th></th>
+          <th>Referencia</th><th>Fecha</th><th>Dirección</th><th>CP</th><th>Provincia</th><th>Estado</th><th></th>
       </tr>
          
           <?php foreach ($pedidos as $items): ?>
@@ -19,6 +19,9 @@
       <tr>          
           <td><?=$items->idPedido?></td>
           <td><?=$items->FechaRealizacion?></td>
+          <td><?=$items->DireccionUsuario?></td>
+          <td><?=$items->CodigoPostalUsuario?></td>
+          <td><?=$this->Usuarios_model->get_provincia($items->ProvinciaUsuario)?></td>
           <td><?=$this->Productos_model->estado_pedido($items->Estado)?></td>
           <td><a href="<?=site_url('compras/ver_pedido_archivo/'.$items->idPedido)?>">Ver Pedido</a></td>
       </tr>

@@ -63,7 +63,7 @@ class Recuperarpass extends CI_Controller {
             $this->email->message("Su contraseña provisional es:".$pass);
             $this->email->send();
 
-            $mensaje=$correo." ".$pass;
+            $mensaje="Se ha enviado un correo con una nueva contraseña a".$correo;
             //$mensaje="Se ha enviado un eMail de recuperación";              
             //con esto podemos ver el resultado
             var_dump($this->email->print_debugger());

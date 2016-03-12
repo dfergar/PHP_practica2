@@ -14,7 +14,7 @@
         <h5><?=$items->Nombre ?></h5>
         <p style="font-size: 25px;">
             <?=$items->PrecioVenta." €" ?>
-            <input style="font-size: 15px; text-align: center; margin: 10px;" type="number" min="0" max="99" value="0">Und
+            <!--<input style="font-size: 15px; text-align: center; margin: 10px;" type="number" min="0" max="99" value="0">Und-->
         </p>
         <p>
             
