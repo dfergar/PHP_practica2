@@ -144,6 +144,9 @@ class Compras extends CI_Controller {
                 'Producto_idProducto'=>$clave
             );
             $this->Productos_model->AddLinea($lineas);
+            $stock=$this->Productos_model->check_stock($clave);//Comprobamos stock del producto
+            $data=array('Stock' => $stock-$items['und']);//Determinamos nuevo stock de producto
+            $this->Productos_model->SetProducto($clave,$data);//Actualizamos stock del producto
             
         }   
         $datos_usuario=$this->Usuarios_model->GetUsuario($this->session->userdata('Usuario'));
@@ -195,8 +198,20 @@ class Compras extends CI_Controller {
         $cabecera=$this->load->view('cabecera', Array('categorias'=>$categorias), TRUE);
         $pie=$this->load->view('pie', Array(), TRUE); 
         
-        $this->Productos_model->DeletePedido($idPedido);
-       
+        //Devolvemos los productos dekl pedido al stock
+        $lineas=$this->Productos_model->GetLineas($idPedido);
+        foreach($lineas as $items)
+        {
+            $idProd=$items->Producto_idProducto;
+            $cant=$items->Cantidad;
+            $stock=$this->Productos_model->check_stock($items->Producto_idProducto);//Comprobamos stock del producto
+            $data=array('Stock' => $stock+$items->Cantidad);//Determinamos nuevo stock de producto
+            $this->Productos_model->SetProducto($items->Producto_idProducto,$data);//Actualizamos stock del producto           
+            
+        }
+        
+        
+        $this->Productos_model->DeletePedido($idPedido);//borramos pedido
         $mensaje="Pedido cancelado correctamente";
         $contenido=$this->load->view('mensajes_view', Array('mensaje'=>$mensaje), TRUE);
         $this->load->view('plantilla_view',Array('cabecera'=>$cabecera, 'contenido'=>$contenido,'pie'=>$pie));     

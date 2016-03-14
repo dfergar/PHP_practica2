@@ -7,7 +7,7 @@
  
 
 <div class="row">
-  <div class="col-sm-4 col-md-2">
+  <div class="col-sm-4 col-md-3">
     <div class="thumbnail">
       <img src="<?=base_url()?><?=$items->Imagen ?>" style="height: 300px;">
       <div class="caption">

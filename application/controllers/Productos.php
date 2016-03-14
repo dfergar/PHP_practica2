@@ -53,7 +53,7 @@ class Productos extends CI_Controller {
         $cabecera=$this->load->view('cabecera', Array('categorias'=>$categorias, 'categoria'=>$categoria),  TRUE);
         $pie=$this->load->view('pie', Array(), TRUE);
         
-        $pages=3; //Número de registros mostrados por páginas
+        $pages=4; //Número de registros mostrados por páginas
         $this->load->library('pagination'); //Cargamos la librería de paginación
         $config['base_url'] = site_url('productos/ver_categoria/'.$categoria); // parametro base de la aplicación, si tenemos un .htaccess nos evitamos el index.php
         $config['total_rows'] = $this->Productos_model->filas_categoria($categoria);//calcula el número de filas  

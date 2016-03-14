@@ -62,13 +62,9 @@ class Productos_model extends CI_Model{
      */
     function check_stock($id)
     {
-        $consulta = $this->db->query("SELECT * FROM producto WHERE idProducto=$id");
+        $consulta = $this->db->query("SELECT * FROM Producto WHERE idProducto=$id");
         return $consulta->row()->Stock;
-        /*if($consulta->row()->Stock==0)
-        {
-            return FALSE;
-        }
-        else return TRUE;*/
+        
     }
     
     function AddPedido($data)
@@ -119,6 +115,13 @@ class Productos_model extends CI_Model{
         $this->db->delete('Pedido', array('idPedido' => $idPedido));
         
     }
+    
+    public function SetProducto($id,$data)
+    {
+        $this->db->where('idProducto', $id);
+        $this->db->update('Producto', $data);
+        
+    }    
     
     
     
