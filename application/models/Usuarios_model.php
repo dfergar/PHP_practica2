@@ -65,6 +65,11 @@ class Usuarios_model extends CI_Model{
         return $consulta->result();
         
     }
+    
+    function SetPassword($user, $pass)
+    {
+        $this->db->query("UPDATE Usuario SET Password='$pass' WHERE Usuario='$user'");
+    }
             
 }
 ?>

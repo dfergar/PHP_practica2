@@ -121,7 +121,25 @@ class Productos_model extends CI_Model{
         $this->db->where('idProducto', $id);
         $this->db->update('Producto', $data);
         
-    }    
+    } 
+    
+    public function Productos_Agregador($por_pagina,$segmento)
+    {
+        $resultados=$this->get_destacados($por_pagina, $segmento);
+        $dest=array();
+        foreach($resultados as $resultado)
+        {
+            $dest[]=array(
+                'nombre'=>$resultado->Nombre, 
+                'descripcion'=>$resultado->Descripcion,
+                'precio'=>$resultado->PrecioVenta,
+                'img'=>base_url().$resultado->Imagen,
+                'url'=>site_url('compras/agregar/'.$resultado->idProducto)
+            );
+        }
+        return $dest;
+                
+    }
     
     
     
